@@ -17,7 +17,10 @@ public class OrderEntity {
     private Double price;
     private Integer cooking_time;
     private LocalDateTime order_time;
-    @OneToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(name = "order_product",schema = "modsen",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<ProductEntity> products;
 
     public OrderEntity() {
