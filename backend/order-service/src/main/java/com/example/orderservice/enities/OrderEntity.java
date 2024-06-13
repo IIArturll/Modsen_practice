@@ -3,6 +3,7 @@ package com.example.orderservice.enities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(schema = "modsen",name = "orders")
@@ -16,6 +17,8 @@ public class OrderEntity {
     private Double price;
     private Integer cooking_time;
     private LocalDateTime order_time;
+    @OneToMany
+    private List<ProductEntity> products;
 
     public OrderEntity() {
     }
@@ -58,5 +61,13 @@ public class OrderEntity {
 
     public void setOrder_time(LocalDateTime order_time) {
         this.order_time = order_time;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
     }
 }
