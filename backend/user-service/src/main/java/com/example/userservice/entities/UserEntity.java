@@ -19,6 +19,8 @@ public class UserEntity {
     @Enumerated(EnumType.ORDINAL)
     private Sex sex;
 
+    // По ТЗ у пользователя так же должна быть дата рождения...
+
     public UserEntity() {
     }
 
