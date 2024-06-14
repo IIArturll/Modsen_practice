@@ -1,0 +1,14 @@
+spring:
+  liquibase:
+    enabled: true
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1
+  jpa:
+    hibernate:
+      ddl-auto: none
+server:
+  port: 0

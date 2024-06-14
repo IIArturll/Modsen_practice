@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create-users-tables.sql
+  - include:
+      file: db/changelog/changeset/fill-role-table.sql
