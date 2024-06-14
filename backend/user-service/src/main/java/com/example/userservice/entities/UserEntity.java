@@ -15,6 +15,7 @@ public class UserEntity {
     @Column(unique = true, nullable = false)
     private String password;
     @ManyToOne
+    @JoinColumn(name = "role_id")
     private RoleEntity role;
     @Enumerated(EnumType.ORDINAL)
     private Sex sex;
