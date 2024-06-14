@@ -2,6 +2,9 @@ package com.example.userservice.entities;
 
 import jakarta.persistence.*;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 @Entity
 @Table(schema = "modsen", name = "user")
 public class UserEntity {
@@ -19,6 +22,8 @@ public class UserEntity {
     private RoleEntity role;
     @Enumerated(EnumType.ORDINAL)
     private Sex sex;
+    @Column(name = "birthday")
+    private Date dateOfBirth;
 
     public UserEntity() {
     }
@@ -77,5 +82,13 @@ public class UserEntity {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }
