@@ -13,5 +13,5 @@ public interface AdminService {
 
     UserDTO getById(UUID id);
 
-    List<User> getAll();
+    Iterable<User> getAll();
 }

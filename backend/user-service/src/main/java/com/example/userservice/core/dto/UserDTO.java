@@ -1,14 +1,12 @@
 package com.example.userservice.core.dto;
 
-import com.example.userservice.entities.Sex;
+import com.example.userservice.core.enums.Sex;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-import java.util.UUID;
-
 public class UserDTO {
-    private UUID id;
+    private Integer id;
 
     @NotNull
     @NotBlank
@@ -30,7 +28,7 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(UUID id, String email, String firstname, String lastname, Sex sex) {
+    public UserDTO(Integer id, String email, String firstname, String lastname, Sex sex) {
         this.id = id;
         this.email = email;
         this.firstname = firstname;
@@ -45,11 +43,11 @@ public class UserDTO {
         this.sex = sex;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,16 +1,23 @@
 package com.example.userservice.services;
 
 import com.example.userservice.core.dto.UserDTO;
+import com.example.userservice.entities.UserEntity;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface UserService {
-    UserDTO update(UUID id, UserDTO userDto);
 
-    void delete(UUID id);
+    UserDTO save(UserEntity userEntity);
 
-    UserDTO getById(UUID id);
+    UserDTO update(Integer id, UserDTO userDto);
+
+    void delete(Integer id);
+
+    UserDTO getById(Integer id);
+
+    UserDTO getByLogin(String login);
+
+    UserDTO getByEmail(String email);
 
     List<UserDTO> getAll();
 }

@@ -11,17 +11,16 @@ import java.util.Set;
 import java.util.UUID;
 
 public class MyUserDetails implements UserDetails {
-    private UUID id;
+    private Integer id;
     private String email;
     private String password;
     private RoleEntity role;
-    //private Status status;
     private Status status;
 
     public MyUserDetails() {
     }
 
-    public MyUserDetails(UUID id, String email, String password, RoleEntity role, Status status) {
+    public MyUserDetails(Integer id, String email, String password, RoleEntity role, Status status) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -29,7 +28,7 @@ public class MyUserDetails implements UserDetails {
         this.status = status;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -1,11 +1,11 @@
 package com.example.userservice.core.dto;
 
-import com.example.userservice.entities.Sex;
+import com.example.userservice.core.enums.Sex;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.antlr.v4.runtime.misc.NotNull;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class UserCreateDTO {
     @NotNull
@@ -36,23 +36,21 @@ public class UserCreateDTO {
     @NotBlank
     private Sex sex;
 
-
-    // По ТЗ как-бы надо
     @NotNull
     @NotBlank
-    private Timestamp birthDate;
+    private Date dateOfBirth;
 
     public UserCreateDTO() {
     }
 
-    public UserCreateDTO(String email, String login, String password, String firstname, String lastname, Sex sex, Timestamp birthDate) {
+    public UserCreateDTO(String email, String login, String password, String firstname, String lastname, Sex sex, Date dateOfBirth) {
         this.email = email;
         this.login = login;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.sex = sex;
-        this.birthDate = birthDate;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
@@ -103,11 +101,11 @@ public class UserCreateDTO {
         this.sex = sex;
     }
 
-    public Timestamp getBirthDate() {
-        return birthDate;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setBirthDate(Timestamp birthDate) {
-        this.birthDate = birthDate;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

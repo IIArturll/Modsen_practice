@@ -1,6 +1,9 @@
 package com.example.userservice.entities;
 
+import com.example.userservice.core.enums.Sex;
 import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 @Table(schema = "modsen", name = "user")
@@ -12,14 +15,17 @@ public class UserEntity {
     private String surname;
     @Column(unique = true, nullable = false)
     private String email;
+    // !!! По ТЗ у юзера так же должен быть логин.
+    @Column(unique = true, nullable = false)
+    private String login;
     @Column(unique = true, nullable = false)
     private String password;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private RoleEntity role;
     @Enumerated(EnumType.ORDINAL)
     private Sex sex;
-
-    // По ТЗ у пользователя так же должна быть дата рождения...
+    @Column(name = "birthday")
+    private Date dateOfBirth;
 
     public UserEntity() {
     }
@@ -56,6 +62,14 @@ public class UserEntity {
         this.email = email;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -78,5 +92,13 @@ public class UserEntity {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

@@ -1,37 +1,37 @@
 package com.example.userservice.core.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 import java.util.Objects;
 
 public class UserLoginDTO {
+    @NotNull
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$",
-            message = "illegal format of email,correct example: email@mail.ru , google@gmail.com")
-    private String email;
-    // Либо по логину но я хз как это нормально сделать)
+    private String identifier;
+
     @NotBlank
     private String password;
 
     public UserLoginDTO() {
     }
 
-    public UserLoginDTO(String email, String password) {
-        this.email = email;
+    public UserLoginDTO(String identifier, String password) {
+        this.identifier = identifier;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getIdentifier() {
+        return identifier;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setEmail(String mail) {
-        this.email = mail;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public void setPassword(String password) {
@@ -42,11 +42,11 @@ public class UserLoginDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserLoginDTO that)) return false;
-        return Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassword(), that.getPassword());
+        return Objects.equals(getIdentifier(), that.getIdentifier()) && Objects.equals(getPassword(), that.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getPassword());
+        return Objects.hash(getIdentifier(), getPassword());
     }
 }
