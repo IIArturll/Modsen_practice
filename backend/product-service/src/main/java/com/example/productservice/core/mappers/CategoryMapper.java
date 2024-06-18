@@ -1,6 +1,6 @@
-package com.example.productservice.mappers;
+package com.example.productservice.core.mappers;
 
-import com.example.productservice.dto.CategoryDTO;
+import com.example.productservice.core.dto.CategoryDTO;
 import com.example.productservice.entities.CategoryEntity;
 import org.springframework.stereotype.Component;
 

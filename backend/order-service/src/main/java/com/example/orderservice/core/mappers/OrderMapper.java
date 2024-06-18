@@ -1,6 +1,6 @@
-package com.example.orderservice.mappers;
+package com.example.orderservice.core.mappers;
 
-import com.example.orderservice.dto.OrderDTO;
+import com.example.orderservice.core.dto.OrderDTO;
 import com.example.orderservice.enities.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

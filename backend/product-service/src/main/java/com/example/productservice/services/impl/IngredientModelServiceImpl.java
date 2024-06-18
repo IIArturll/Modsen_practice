@@ -1,8 +1,8 @@
 package com.example.productservice.services.impl;
 
 
-import com.example.productservice.mappers.IngredientModelMapper;
-import com.example.productservice.dto.IngredientModelDTO;
+import com.example.productservice.core.mappers.IngredientModelMapper;
+import com.example.productservice.core.dto.IngredientModelDTO;
 import com.example.productservice.services.IngredientModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

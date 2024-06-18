@@ -1,4 +1,4 @@
-package com.example.productservice.exceptions;
+package com.example.productservice.core.exceptions;
 
 
 public class BadRequestException extends RuntimeException{

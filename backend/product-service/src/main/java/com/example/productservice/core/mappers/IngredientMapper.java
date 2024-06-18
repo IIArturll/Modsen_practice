@@ -1,7 +1,8 @@
-package com.example.orderservice.mappers;
+package com.example.productservice.core.mappers;
 
-import com.example.orderservice.dto.IngredientDTO;
-import com.example.orderservice.enities.IngredientEntity;
+
+import com.example.productservice.core.dto.IngredientDTO;
+import com.example.productservice.entities.IngredientEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;

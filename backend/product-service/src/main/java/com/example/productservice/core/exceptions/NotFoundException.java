@@ -1,4 +1,4 @@
-package com.example.orderservice.exceptions;
+package com.example.productservice.core.exceptions;
 
 
 public class NotFoundException extends RuntimeException{

@@ -1,6 +1,6 @@
 package com.example.productservice.services;
 
-import com.example.productservice.dto.IngredientModelDTO;
+import com.example.productservice.core.dto.IngredientModelDTO;
 
 import java.util.List;
 

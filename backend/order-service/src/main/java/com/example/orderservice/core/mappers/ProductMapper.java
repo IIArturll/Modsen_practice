@@ -1,7 +1,7 @@
-package com.example.productservice.mappers;
+package com.example.orderservice.core.mappers;
 
-import com.example.productservice.dto.ProductDTO;
-import com.example.productservice.entities.ProductEntity;
+import com.example.orderservice.core.dto.ProductDTO;
+import com.example.orderservice.enities.ProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

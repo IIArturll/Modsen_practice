@@ -1,4 +1,4 @@
-package com.example.orderservice.exceptions;
+package com.example.orderservice.core.exceptions;
 
 
 public class BadRequestException extends RuntimeException{
