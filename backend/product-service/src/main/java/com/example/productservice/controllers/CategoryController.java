@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
 
     @PostMapping("/")
-    public ResponseEntity<?> newCategory() {
+    public ResponseEntity<?> newCategory(/* @RequestBody CategoryDTO category */) {
         return ResponseEntity.status(201).build();
     }
 
@@ -22,8 +22,8 @@ public class CategoryController {
         return ResponseEntity.status(200).build();
     }
 
-    @PutMapping("/{categoryId}")
-    public ResponseEntity<?> updateProduct(@PathVariable("categoryId") String categoryId) {
+    @PutMapping()
+    public ResponseEntity<?> updateProduct(/* @RequestBody CategoryDTO category */) {
         return ResponseEntity.status(200).build();
     }
 

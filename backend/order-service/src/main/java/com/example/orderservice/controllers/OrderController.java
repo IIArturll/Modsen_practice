@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     @PostMapping("/")
-    public ResponseEntity<?> createOrder() {
+    public ResponseEntity<?> createOrder(/* @RequestBody OrderDto order */) {
         return ResponseEntity.status(201).build();
     }
 
@@ -32,8 +32,8 @@ public class OrderController {
         return ResponseEntity.status(200).build();
     }
 
-    @PutMapping("/{orderId}")
-    public ResponseEntity<?> editOrder(@PathVariable String orderId) {
+    @PutMapping()
+    public ResponseEntity<?> editOrder(/* @RequestBody OrderDto order */) {
         return ResponseEntity.status(201).build();
     }
 

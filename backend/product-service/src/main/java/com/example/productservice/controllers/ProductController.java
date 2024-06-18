@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/product")
 public class ProductController {
 
-    @PostMapping("/")
-    public ResponseEntity<?> newProduct() {
+    @PostMapping()
+    public ResponseEntity<?> newProduct(/* @RequestBody ProductDTO product */) {
         return ResponseEntity.status(201).build();
     }
 
@@ -27,8 +27,8 @@ public class ProductController {
         return ResponseEntity.status(200).build();
     }
 
-    @PutMapping("/{productId}")
-    public ResponseEntity<?> updateProduct(@PathVariable("productId") String productId) {
+    @PutMapping()
+    public ResponseEntity<?> updateProduct(/* @RequestBody ProductDTO product */) {
         return ResponseEntity.status(200).build();
     }
 
