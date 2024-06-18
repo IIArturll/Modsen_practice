@@ -2,6 +2,7 @@ package com.example.productservice.core.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,15 +23,19 @@ public class IngredientDTO {
     private String name;
 
     @NotNull
+    @Positive(message = "calories can't be negative")
     private Integer calories;
 
     @NotNull
+    @Positive(message = "protein can't be negative")
     private Integer protein;
 
     @NotNull
+    @Positive(message = "fats can't be negative")
     private Integer fats;
 
     @NotNull
+    @Positive(message = "carbs can't be negative")
     private Integer carbs;
 
 }
