@@ -14,5 +14,9 @@ public interface ProductService {
 
     ProductDTO update(Integer id, ProductDTO productDTO);
 
+    void addIngredientToProduct(Integer productId, Integer ingredientId, Double weight);
+
+    void removeIngredientFromProduct(Integer productId, Integer ingredientId);
+
     void delete(Integer id);
 }

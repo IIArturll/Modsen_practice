@@ -1,6 +1,6 @@
 package com.example.productservice.services.impl;
 
-import com.example.productservice.mappers.CategoryDTOMapper;
+import com.example.productservice.mappers.CategoryMapper;
 import com.example.productservice.dto.CategoryDTO;
 import com.example.productservice.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private final CategoryDTOMapper categoryDTOMapper;
+    private final CategoryMapper categoryMapper;
 
     @Autowired
-    public CategoryServiceImpl(CategoryDTOMapper categoryDTOMapper) {
-        this.categoryDTOMapper = categoryDTOMapper;
+    public CategoryServiceImpl(CategoryMapper categoryMapper) {
+        this.categoryMapper = categoryMapper;
     }
 
     @Override

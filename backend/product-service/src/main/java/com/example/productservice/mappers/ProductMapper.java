@@ -9,13 +9,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-public class ProductDTOMapper implements Function<ProductEntity, ProductDTO> {
+public class ProductMapper implements Function<ProductEntity, ProductDTO> {
 
-    private final IngredientModelDTOMapper ingredientModelDTOMapper;
+    private final IngredientModelMapper ingredientModelMapper;
 
     @Autowired
-    public ProductDTOMapper(IngredientModelDTOMapper ingredientModelDTOMapper) {
-        this.ingredientModelDTOMapper = ingredientModelDTOMapper;
+    public ProductMapper(IngredientModelMapper ingredientModelMapper) {
+        this.ingredientModelMapper = ingredientModelMapper;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ProductDTOMapper implements Function<ProductEntity, ProductDTO> {
                 productEntity.getPrice(),
                 productEntity.getIngredients()
                         .stream()
-                        .map(ingredientModelDTOMapper)
+                        .map(ingredientModelMapper)
                         .collect(Collectors.toList())
         );
     }

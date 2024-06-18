@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class IngredientDTOMapper implements Function<IngredientEntity, IngredientDTO> {
+public class IngredientMapper implements Function<IngredientEntity, IngredientDTO> {
 
     @Override
     public IngredientDTO apply(IngredientEntity ingredientEntity) {

@@ -1,4 +1,4 @@
-package com.example.productservice.dto;
+package com.example.orderservice.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,18 +8,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class IngredientDTO {
+public class ProductDTO {
 
     private Integer id;
 
-    @NotBlank
-    @Size(min = 1, max = 255, message = "name should be between 1 to 255 characters")
+    @NotBlank()
+    @Size(min = 1, max = 255, message = "Name should be between 1 and 255 characters")
     private String name;
+
+    @NotNull
+    private Integer weight;
+
+    @NotNull
+    private Integer categoryId;
 
     @NotNull
     private Integer calories;
@@ -32,5 +39,11 @@ public class IngredientDTO {
 
     @NotNull
     private Integer carbs;
+
+    @NotNull
+    private Double price;
+
+    @NotNull(message = "ingredients must not be null")
+    private List<IngredientModelDTO> ingredients;
 
 }

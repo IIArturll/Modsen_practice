@@ -1,7 +1,7 @@
 package com.example.productservice.services.impl;
 
 
-import com.example.productservice.mappers.IngredientDTOMapper;
+import com.example.productservice.mappers.IngredientMapper;
 import com.example.productservice.dto.IngredientDTO;
 import com.example.productservice.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,11 @@ import java.util.List;
 @Service
 public class IngredientServiceImpl implements IngredientService {
 
-    private final IngredientDTOMapper ingredientDTOMapper;
+    private final IngredientMapper ingredientMapper;
 
     @Autowired
-    public IngredientServiceImpl(IngredientDTOMapper ingredientDTOMapper) {
-        this.ingredientDTOMapper = ingredientDTOMapper;
+    public IngredientServiceImpl(IngredientMapper ingredientMapper) {
+        this.ingredientMapper = ingredientMapper;
     }
 
     @Override

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class CategoryDTOMapper implements Function<CategoryEntity, CategoryDTO> {
+public class CategoryMapper implements Function<CategoryEntity, CategoryDTO> {
 
     @Override
     public CategoryDTO apply(CategoryEntity categoryEntity) {
