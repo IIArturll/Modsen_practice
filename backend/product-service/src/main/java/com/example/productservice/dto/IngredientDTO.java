@@ -18,7 +18,7 @@ public class IngredientDTO {
     private Integer id;
 
     @NotBlank
-    @Size(min = 1, max = 255, message = "name should be between 1 to 255 characters")
+    @Size(min = 1, max = 255, message = "nameshould be between 1 to 255 characters")
     private String name;
 
     @NotNull
