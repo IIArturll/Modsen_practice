@@ -1,6 +1,6 @@
 package com.example.productservice.services.impl;
 
-import com.example.productservice.Mappers.ProductDTOMapper;
+import com.example.productservice.mappers.ProductDTOMapper;
 import com.example.productservice.dto.ProductDTO;
 import com.example.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
