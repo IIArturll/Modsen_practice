@@ -2,19 +2,17 @@ package com.example.orderservice.core.mappers;
 
 import com.example.orderservice.core.dto.IngredientModelDTO;
 import com.example.orderservice.enities.IngredientModelEntity;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
+
 
 @Component
-public class IngredientModelMapper implements Function<IngredientModelEntity, IngredientModelDTO> {
+@Mapper(componentModel = "spring")
+public interface IngredientModelMapper {
 
-    @Override
-    public IngredientModelDTO apply(IngredientModelEntity ingredientModelEntity) {
-        return new IngredientModelDTO(
-                ingredientModelEntity.getId(),
-                ingredientModelEntity.getIngredient().getId(),
-                ingredientModelEntity.getWeight()
-        );
-    }
+    @Mapping(source = "ingredient.id", target = "ingredientId")
+    IngredientModelDTO toDTO(IngredientModelEntity ingredientModelEntity);
+
 }

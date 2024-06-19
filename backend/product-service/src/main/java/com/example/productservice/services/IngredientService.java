@@ -1,7 +1,6 @@
 package com.example.productservice.services;
 
 import com.example.productservice.core.dto.IngredientDTO;
-
 import java.util.List;
 
 public interface IngredientService {

@@ -2,39 +2,16 @@ package com.example.productservice.core.mappers;
 
 import com.example.productservice.core.dto.ProductDTO;
 import com.example.productservice.entities.ProductEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 @Component
-public class ProductMapper implements Function<ProductEntity, ProductDTO> {
+@Mapper(componentModel = "spring", uses = IngredientModelMapper.class)
+public interface ProductMapper {
 
-    private final IngredientModelMapper ingredientModelMapper;
-
-    @Autowired
-    public ProductMapper(IngredientModelMapper ingredientModelMapper) {
-        this.ingredientModelMapper = ingredientModelMapper;
-    }
-
-    @Override
-    public ProductDTO apply(ProductEntity productEntity) {
-        return new ProductDTO(
-                productEntity.getId(),
-                productEntity.getName(),
-                productEntity.getWeight(),
-                productEntity.getCategory().getId(),
-                productEntity.getCalories(),
-                productEntity.getProtein(),
-                productEntity.getFats(),
-                productEntity.getCarbs(),
-                productEntity.getPrice(),
-                productEntity.getIngredients()
-                        .stream()
-                        .map(ingredientModelMapper)
-                        .collect(Collectors.toList())
-        );
-    }
+    @Mapping(source = "category.id", target = "categoryId")
+    ProductDTO toDto(ProductEntity productEntity);
 }
+
 
