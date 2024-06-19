@@ -1,6 +1,7 @@
 package com.example.userservice.security;
 
 import com.example.userservice.core.mappers.UserMapper;
+import com.example.userservice.exceptions.NotFoundException;
 import com.example.userservice.services.UserMicroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
@@ -17,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public MyUserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return UserMapper.convertToUserDetails(service.getByEmail(email)
-                .orElseThrow(() -> /*resource not found*/));
+                .orElseThrow(() -> new NotFoundException("User with this email not found")));
     }
 
 }

@@ -1,4 +1,7 @@
 package com.example.userservice.services.impl;
 
-public class AdminServiceImpl {
+import com.example.userservice.services.AdminService;
+
+public class AdminServiceImpl implements AdminService {
+
 }

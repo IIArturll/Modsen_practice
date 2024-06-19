@@ -3,13 +3,11 @@ package com.example.userservice.services.impl;
 import com.example.userservice.entities.RoleEntity;
 import com.example.userservice.repository.RoleRepository;
 import com.example.userservice.services.RoleService;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository repository;
-
-    public RoleServiceImpl(RoleRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public RoleEntity save(String role) {

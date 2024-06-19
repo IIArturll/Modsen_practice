@@ -4,5 +4,5 @@ import com.example.userservice.core.dto.UserDTO;
 import com.example.userservice.core.dto.UserLoginDTO;
 
 public interface LoginService {
-    UserDTO login(UserLoginDTO user);
+    String login(UserLoginDTO user);
 }

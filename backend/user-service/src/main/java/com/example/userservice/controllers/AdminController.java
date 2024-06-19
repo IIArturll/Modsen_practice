@@ -14,6 +14,4 @@ class AdminController {
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
-
-
 }
