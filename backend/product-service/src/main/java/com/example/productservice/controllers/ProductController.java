@@ -12,7 +12,7 @@ public class ProductController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<?> getAllProducts() {
         return ResponseEntity.status(200).build();
     }
