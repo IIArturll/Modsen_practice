@@ -5,7 +5,6 @@ import com.example.orderservice.enities.IngredientEntity;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @Mapper(componentModel = "spring")
 public interface IngredientMapper {

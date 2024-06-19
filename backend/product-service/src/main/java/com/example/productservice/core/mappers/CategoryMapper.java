@@ -5,7 +5,6 @@ import com.example.productservice.entities.CategoryEntity;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @Mapper(componentModel = "spring")
 public interface CategoryMapper  {
