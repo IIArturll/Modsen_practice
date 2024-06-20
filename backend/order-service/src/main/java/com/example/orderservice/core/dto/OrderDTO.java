@@ -1,28 +1,26 @@
 package com.example.orderservice.core.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class OrderDTO {
+public record OrderDTO(
+        Integer id,
 
-    private Integer id;
+        Integer userId,
 
-    private Integer userId;
+        @NotNull
+        @Positive(message = "price can't be negative")
+        Double price,
 
-    private Double price;
+        @NotNull
+        Integer cookingTime,
 
-    private Integer cookingTime;
+        LocalDateTime orderTime,
 
-    private LocalDateTime orderTime;
+        List<ProductDTO> productsDto
+) {
 
-    private List<ProductDTO> productsDto;
 }

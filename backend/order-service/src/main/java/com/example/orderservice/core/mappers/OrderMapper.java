@@ -2,34 +2,18 @@ package com.example.orderservice.core.mappers;
 
 import com.example.orderservice.core.dto.OrderDTO;
 import com.example.orderservice.enities.OrderEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 @Component
-public class OrderMapper implements Function<OrderEntity, OrderDTO> {
+@Mapper(componentModel = "spring", uses = ProductMapper.class)
+public interface OrderMapper {
 
-    private final ProductMapper productMapper;
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "cooking_time", target = "cookingTime")
+    @Mapping(source = "order_time", target = "orderTime")
+    @Mapping(target = "products", source = "products")
+    OrderDTO toDTO(OrderEntity orderEntity);
 
-    @Autowired
-    public OrderMapper(ProductMapper productMapper) {
-        this.productMapper = productMapper;
-    }
-
-    @Override
-    public OrderDTO apply(OrderEntity orderEntity) {
-        return new OrderDTO(
-                orderEntity.getId(),
-                orderEntity.getUser() != null ? orderEntity.getUser().getId() : null,
-                orderEntity.getPrice(),
-                orderEntity.getCooking_time(),
-                orderEntity.getOrder_time(),
-                orderEntity.getProducts()
-                        .stream()
-                        .map(productMapper)
-                        .collect(Collectors.toList())
-        );
-    }
 }

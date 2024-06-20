@@ -2,26 +2,17 @@ package com.example.productservice.core.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+public record CategoryDTO(
+        Integer id,
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class CategoryDTO {
+        @NotBlank
+        @Size(min = 1, max = 255, message = "name should be between 1 to 255 characters")
+        String name,
 
-    private Integer id;
-
-    @NotBlank
-    @Size(min = 1, max = 255, message = "name should be between 1 to 255 characters")
-    private String name;
-
-    @NotBlank
-    @Size(min = 1, max = 255, message = "description should be between 1 to 255 characters")
-    private String description;
+        @NotBlank
+        @Size(min = 1, max = 255, message = "description should be between 1 to 255 characters")
+        String description
+) {
 
 }
