@@ -1,6 +1,7 @@
 package com.example.productservice.services;
 
 import com.example.productservice.core.dto.IngredientDTO;
+
 import java.util.List;
 
 public interface IngredientService {
@@ -11,7 +12,7 @@ public interface IngredientService {
 
     IngredientDTO create(IngredientDTO ingredientDTO);
 
-    IngredientDTO update(Integer id, IngredientDTO ingredientDTO);
+    IngredientDTO update(IngredientDTO ingredientDTO);
 
     void delete(Integer id);
 }

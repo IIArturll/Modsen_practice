@@ -11,4 +11,5 @@ import org.springframework.stereotype.Component;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CategoryMapper {
     CategoryDTO toDTO(CategoryEntity categoryEntity);
+    CategoryEntity toEntity(CategoryDTO categoryDTO);
 }

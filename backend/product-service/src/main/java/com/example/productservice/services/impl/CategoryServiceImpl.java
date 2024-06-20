@@ -41,25 +41,30 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO create(CategoryDTO categoryDTO) {
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setName(categoryDTO.name());
-        categoryEntity.setDescription(categoryDTO.description());
-        CategoryEntity savedCategory = categoryRepository.save(categoryEntity);
-        return categoryMapper.toDTO(savedCategory);
+        CategoryEntity categoryEntity = categoryMapper.toEntity(categoryDTO);
+        categoryEntity = categoryRepository.save(categoryEntity);
+        return categoryMapper.toDTO(categoryEntity);
     }
 
     @Override
     public CategoryDTO update(CategoryDTO categoryDTO) {
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setId(categoryDTO.id());
-        categoryEntity.setName(categoryDTO.name());
-        categoryEntity.setDescription(categoryDTO.description());
-        CategoryEntity savedCategory = categoryRepository.save(categoryEntity);
-        return categoryMapper.toDTO(savedCategory);
+        categoryRepository.findById(categoryDTO.id()).orElseThrow(
+                () -> new NotFoundException("Category with this id not found"));
+        categoryRepository.save(categoryMapper.toEntity(categoryDTO));
+        return categoryDTO;
     }
 
     @Override
     public void delete(Integer id) {
+        categoryRepository.findById(id).orElseThrow(
+                () -> new NotFoundException("Category with this id not found"));
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public CategoryDTO getByName(String categoryName) {
+        CategoryEntity categoryEntity = categoryRepository.findByName(categoryName).orElseThrow(
+                () -> new NotFoundException("Category with this name not found"));
+        return categoryMapper.toDTO(categoryEntity);
     }
 }
