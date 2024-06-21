@@ -1,5 +1,6 @@
 package com.example.userservice.entities;
 
+import com.example.userservice.core.enums.Sex;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,8 @@ public class UserEntity {
     @Column(unique = true, nullable = false)
     private String email;
     @Column(unique = true, nullable = false)
+    private String login;
+    @Column(nullable = false)
     private String password;
     @ManyToOne
     @JoinColumn(name = "role_id")
