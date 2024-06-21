@@ -1,9 +1,17 @@
 package com.example.productservice.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(schema = "ingredient_model")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class IngredientModelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,31 +20,4 @@ public class IngredientModelEntity {
     @JoinColumn(name = "ingredient_id")
     private IngredientEntity ingredient;
     private Integer weight;
-
-    public IngredientModelEntity() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public IngredientEntity getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(IngredientEntity ingredient) {
-        this.ingredient = ingredient;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
 }

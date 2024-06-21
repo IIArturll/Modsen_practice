@@ -25,7 +25,7 @@ public class UserEntity {
     private String email;
     @Column(unique = true, nullable = false)
     private String login;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String password;
     @ManyToOne
     @JoinColumn(name = "role_id")
