@@ -30,6 +30,9 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private RoleEntity role;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private StatusEntity status;
     @Enumerated(EnumType.ORDINAL)
     private Sex sex;
     @Column(name = "birthday")

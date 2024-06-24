@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/changeset/create-users-tables.sql
   - include:
       file: db/changelog/changeset/fill-role-table.sql
+  - include:
+      file: db/changelog/changeset/create-refresh_token-table.sql
+  - include:
+      file: db/changelog/changeset/create-user_status-table.sql

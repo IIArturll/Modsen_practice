@@ -9,4 +9,6 @@ public interface UserMicroService {
     Optional<UserEntity> getById(Integer id);
 
     Optional<UserEntity> getByEmail(String email);
+
+    Optional<UserEntity> getByLogin(String login);
 }

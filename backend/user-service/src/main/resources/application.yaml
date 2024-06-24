@@ -1,8 +1,23 @@
 spring:
+  liquibase:
+    enabled: true
   application:
     name: user-service
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: 1
-  server:
+  jpa:
+    hibernate:
+      ddl-auto: none
+server:
+  port: 0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  access:
+    secret: secret
+    expirationMs: 600000 #10 min token live
