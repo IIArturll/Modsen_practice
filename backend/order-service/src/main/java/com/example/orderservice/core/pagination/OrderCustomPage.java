@@ -1,5 +1,6 @@
 package com.example.orderservice.core.pagination;
 
+import com.example.orderservice.enities.OrderEntity;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-public class CustomPage<T> implements Page<T> {
-    private List<T> items;
+public class OrderCustomPage implements Page<OrderEntity> {
+    private List<OrderEntity> items;
     private int pageNumber;
     private int pageSize;
     private int totalElements;
@@ -31,6 +32,23 @@ public class CustomPage<T> implements Page<T> {
     @Override
     public long getTotalElements() {
         return totalElements;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <U> Page<U> map(Function<? super OrderEntity, ? extends U> converter) {
+
+        List<U> mappedItems = items.stream()
+                .map(converter)
+                .collect(Collectors.toList());
+
+        OrderCustomPage mappedPage = new OrderCustomPage();
+        mappedPage.setItems((List<OrderEntity>) mappedItems);
+        mappedPage.setPageNumber(getNumber());
+        mappedPage.setPageSize(getSize());
+        mappedPage.setTotalElements(getNumberOfElements());
+
+        return (Page<U>) mappedPage;
     }
 
     @Override
@@ -49,7 +67,7 @@ public class CustomPage<T> implements Page<T> {
     }
 
     @Override
-    public List<T> getContent() {
+    public List<OrderEntity> getContent() {
         return Collections.unmodifiableList(items);
     }
 
@@ -60,8 +78,7 @@ public class CustomPage<T> implements Page<T> {
 
     @Override
     public Sort getSort() {
-        //return CheckSortInList.isSorted(items);
-        return null;
+        return CheckSortInList.isSorted(items);
     }
 
     @Override
@@ -101,36 +118,15 @@ public class CustomPage<T> implements Page<T> {
         return PageRequest.of(previousPageNumber, pageSize, currentPageable.getSort());
     }
 
-    @Override
-    public <U> Page<U> map(Function<? super T, ? extends U> converter) {
-        List<U> mappedItems = items.stream()
-                .map(converter)
-                .collect(Collectors.toList());
-
-        for (U item : mappedItems) {
-            if (!(item instanceof Comparable)) {
-                throw new IllegalArgumentException("All elements in the list must implement Comparable");
-            }
-        }
-
-        CustomPage<U> mappedPage = new CustomPage<>();
-        mappedPage.setItems(mappedItems);
-        mappedPage.setPageNumber(getNumber());
-        mappedPage.setPageSize(getSize());
-        mappedPage.setTotalElements(getNumberOfElements());
-
-        return Page.empty();
-    }
-
     @NotNull
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<OrderEntity> iterator() {
         return items.iterator();
     }
 
     public String toString() {
         String contentType = "UNKNOWN";
-        List<T> content = this.getContent();
+        List<OrderEntity> content = this.getContent();
         if (!content.isEmpty() && content.get(0) != null) {
             contentType = content.get(0).getClass().getName();
         }
@@ -141,10 +137,10 @@ public class CustomPage<T> implements Page<T> {
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
-        } else if (!(obj instanceof CustomPage<?>)) {
+        } else if (!(obj instanceof OrderCustomPage)) {
             return false;
         } else {
-            CustomPage<?> that = (CustomPage<?>)(obj);
+            OrderCustomPage that = (OrderCustomPage)(obj);
             return this.getTotalPages() == that.getTotalPages() && super.equals(obj);
         }
     }
