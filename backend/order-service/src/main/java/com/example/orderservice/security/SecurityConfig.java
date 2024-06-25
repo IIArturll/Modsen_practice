@@ -1,7 +1,7 @@
-package com.example.productservice.security;
+package com.example.orderservice.security;
 
 
-import com.example.productservice.security.jwt.JwtFilter;
+import com.example.orderservice.security.jwt.JwtFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -40,15 +39,14 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/micro/**").access(
-                                new WebExpressionAuthorizationManager("hasIpAddress('order-service')")) //for docker
-//                        .requestMatchers("/micro/**").permitAll() //for local test
-                        .requestMatchers(HttpMethod.GET).permitAll()
-                        .requestMatchers("/api/v1/product/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/category/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/ingredient/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/order/").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/order/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/order/all").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/order/all/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/order/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/order/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/order/*").hasRole("ADMIN")
                         .anyRequest().denyAll()
-
                 );
         http
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

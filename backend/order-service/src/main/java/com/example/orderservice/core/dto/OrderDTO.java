@@ -20,7 +20,7 @@ public record OrderDTO(
 
         LocalDateTime orderTime,
 
-        List<ProductDTO> productsDto
+        List<ProductDTO> products
 ) {
 
 }

@@ -1,6 +1,6 @@
 package com.example.orderservice.core.dto;
 
-import com.example.orderservice.enities.Sex;
+import com.example.orderservice.core.enums.Sex;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

@@ -59,6 +59,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/api/v1/user").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/api/v1/user").authenticated()
                                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                                .anyRequest().denyAll()
                 );
         http
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
