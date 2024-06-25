@@ -4,9 +4,9 @@ spring:
   application:
     name: product-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 1
+    url: <url> #jdbc:postgresql://localhost:5432/postgres
+    username: <username> #postgres
+    password: <password> #1
   jpa:
     hibernate:
       ddl-auto: none
@@ -15,8 +15,8 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: <defaultZone> #http://localhost:8761/eureka/
 jwt:
   access:
-    secret: secret
-    expirationMs: 600000
+    secret: <secret> #secret
+    expirationMs: <expirationMs> #600000
