@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/changeset/create-refresh_token-table.sql
   - include:
       file: db/changelog/changeset/create-user_status-table.sql
+  - include:
+      file: db/changelog/changeset/fill-status-table.sql

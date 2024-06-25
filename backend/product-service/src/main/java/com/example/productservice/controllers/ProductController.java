@@ -27,7 +27,7 @@ public class ProductController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
         return ResponseEntity.status(200).body(service.getAll());
     }
