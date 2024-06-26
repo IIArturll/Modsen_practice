@@ -47,11 +47,11 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers("/micro/**").access(
-                                        new WebExpressionAuthorizationManager("hasIpAddress('product-service')")) //для докера
-                                .requestMatchers("/micro/**").access(
-                                        new WebExpressionAuthorizationManager("hasIpAddress('order-service')")) //для докера
-//                                .requestMatchers("/micro/**").permitAll() //для тетсов на локалке
+//                                .requestMatchers("/micro/**").access(
+//                                        new WebExpressionAuthorizationManager("hasIpAddress('product-service')")) //для докера
+//                                .requestMatchers("/micro/**").access(
+//                                        new WebExpressionAuthorizationManager("hasIpAddress('order-service')")) //для докера
+                                .requestMatchers("/micro/**").permitAll() //для тетсов на локалке
                                 .requestMatchers(HttpMethod.POST, "/api/v1/user/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/v1/user/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/v1/user/refresh").permitAll()

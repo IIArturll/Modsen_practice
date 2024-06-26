@@ -40,9 +40,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/micro/**").access(
-                                new WebExpressionAuthorizationManager("hasIpAddress('order-service')")) //for docker
-//                        .requestMatchers("/micro/**").permitAll() //for local test
+//                        .requestMatchers("/micro/**").access(
+//                                new WebExpressionAuthorizationManager("hasIpAddress('order-service')")) //for docker
+                        .requestMatchers("/micro/**").permitAll() //for local test
                         .requestMatchers(HttpMethod.GET).permitAll()
                         .requestMatchers("/api/v1/product/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/category/**").hasRole("ADMIN")
