@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/vi/ingredient ")
+@RequestMapping("/api/v1/ingredient ")
 public class IngredientController {
 
-    IngredientService ingredientService;
+    private IngredientService ingredientService;
 
     @PostMapping()
     public ResponseEntity<?> newIngredient (@RequestBody IngredientDTO ingredient ) {
