@@ -21,6 +21,7 @@ import com.example.userservice.security.MyUserDetailsService;
 import com.example.userservice.security.jwt.JwtTokenUtil;
 import com.example.userservice.services.RefreshTokenService;
 import com.example.userservice.services.UserService;
+import org.mapstruct.control.MappingControl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -106,47 +107,40 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UserCreateDTO userDto) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
-            Integer id = userDetails.getId();
-            UserEntity userEntity = userRepository.findById(id)
-                    .orElseThrow(() -> new NotFoundException("Can`t find user with ID: " + id));
-            //todo email verification if email was changed
-            userEntity.setEmail(userDto.email());
-            userEntity.setLogin(userDto.login());
-            userEntity.setName(userDto.name());
-            userEntity.setSurname(userDto.surname());
-            userEntity.setPassword(passwordEncoder.encode(userDto.password()));
-            userEntity.setSex(userDto.sex());
-            userEntity.setDateOfBirth(userDto.dateOfBirth());
-            userRepository.save(userEntity);
-
-        } else throw new RuntimeException("not authenticated");
+        UserEntity userEntity = getAuthorizedUser();
+        //todo email verification if email was changed
+        userEntity.setEmail(userDto.email());
+        userEntity.setLogin(userDto.login());
+        userEntity.setName(userDto.name());
+        userEntity.setSurname(userDto.surname());
+        userEntity.setPassword(passwordEncoder.encode(userDto.password()));
+        userEntity.setSex(userDto.sex());
+        userEntity.setDateOfBirth(userDto.dateOfBirth());
+        userRepository.save(userEntity);
     }
 
     @Override
     public void delete() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String username = userDetails.getUsername();
-            UserEntity userEntity = userRepository.findByEmail(username)
-                    .orElseThrow(() -> new NotFoundException("Can`t find user with email : " + username));
-            userRepository.delete(userEntity);
-        } else throw new RuntimeException("not authenticated");
+        UserEntity userEntity = getAuthorizedUser();
+        userRepository.delete(userEntity);
     }
 
     @Override
     public UserDTO getUserInfo() {
+        UserEntity userEntity = getAuthorizedUser();
+        return userMapper.toDto(userEntity);
+    }
+
+    private UserEntity getAuthorizedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
-            Integer id = userDetails.getId();
-            UserEntity userEntity = userRepository.findById(id)
-                    .orElseThrow(() -> new NotFoundException("Can`t find user with ID: " + id));
-            return userMapper.toDto(userEntity);
-        } else throw new RuntimeException("not authenticated");
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new RuntimeException("Not authenticated");
+        }
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+        return userRepository.findByEmail(username).orElseThrow(
+                () -> new NotFoundException("Can't find user with email: " + username));
+
     }
 }
 
