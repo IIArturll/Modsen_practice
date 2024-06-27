@@ -1,7 +1,12 @@
 package com.example.userservice.security;
 
+import com.example.userservice.core.enums.Role;
 import com.example.userservice.core.enums.Status;
 import com.example.userservice.entities.RoleEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,39 +14,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class MyUserDetails implements UserDetails {
     private Integer id;
     private String email;
+    private String login;
     private String password;
-    private RoleEntity role;
+    private Role role;
     private Status status;
-
-    public MyUserDetails() {
-    }
-
-    public MyUserDetails(Integer id, String email, String password, RoleEntity role, Status status) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.status = status;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public RoleEntity getRole() {
-        return role;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Set.of(new SimpleGrantedAuthority("ROLE_" + role.getRole()));
+        return Set.of(new SimpleGrantedAuthority("ROLE_" + role));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.orderservice.enities;
 
+import com.example.orderservice.core.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,16 @@ public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "role", nullable = false, unique = true)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public RoleEntity(Role role) {
+        this.role = role;
+        this.id = (int) (role.ordinal() + 1);
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+        this.id = (int) (role.ordinal() + 1);
+    }
 }

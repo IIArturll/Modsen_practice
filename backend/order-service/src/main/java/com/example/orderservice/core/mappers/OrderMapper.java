@@ -4,16 +4,16 @@ import com.example.orderservice.core.dto.OrderDTO;
 import com.example.orderservice.enities.OrderEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Mapper(componentModel = "spring", uses = ProductMapper.class)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING,
+uses = {ProductMapper.class})
 public interface OrderMapper {
 
     @Mapping(source = "user.id", target = "userId")
-    @Mapping(source = "cooking_time", target = "cookingTime")
-    @Mapping(source = "order_time", target = "orderTime")
-    @Mapping(target = "products", source = "products")
-    OrderDTO toDTO(OrderEntity orderEntity);
+    OrderDTO toDTO(OrderEntity products);
 
 }

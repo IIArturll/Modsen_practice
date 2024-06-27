@@ -1,23 +1,22 @@
 package com.example.userservice.services;
 
+import com.example.userservice.core.dto.UserCreateDTO;
 import com.example.userservice.core.dto.UserDTO;
-import com.example.userservice.entities.UserEntity;
-
-import java.util.List;
+import com.example.userservice.core.dto.UserLoginDTO;
+import com.example.userservice.core.dto.AuthDTO;
 
 public interface UserService {
 
-    UserDTO save(UserEntity userEntity);
+    void register(UserCreateDTO userDTO);
 
-    UserDTO update(Integer id, UserDTO userDto);
+    AuthDTO login(UserLoginDTO userDTO);
 
-    void delete(Integer id);
+    AuthDTO refreshToken(AuthDTO authDTO);
 
-    UserDTO getById(Integer id);
+    void update(UserCreateDTO userDto);
 
-    UserDTO getByLogin(String login);
+    void delete();
 
-    UserDTO getByEmail(String email);
-
-    List<UserDTO> getAll();
+    UserDTO getUserInfo();
 }
+

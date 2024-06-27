@@ -1,0 +1,70 @@
+version: '3.5'
+services:
+
+  modsen_db:
+    build: database
+    image: modsen_db:1.0.0
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+
+  eureka-server:
+    build: backend/eureka-server
+    image: eureka-server:1.0.0
+    restart: always
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: backend/api-gateway
+    image: api-gateway:1.0.0
+    depends_on:
+      - eureka-server
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+
+  user-service:
+    build: backend/user-service
+    image: user-service:1.0.0
+    restart: always
+    depends_on:
+      - eureka-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://modsen_db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - JWT_ACCESS_SECRET=secret
+      - JWT_ACCESS_EXPIRATIONMS=60000
+
+  product-service:
+    build: backend/product-service
+    image: product-service:1.0.0
+    restart: always
+    depends_on:
+      - eureka-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://modsen_db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - JWT_ACCESS_SECRET=secret
+      - JWT_ACCESS_EXPIRATIONMS=60000
+
+  order-service:
+    build: backend/order-service
+    image: order-service:1.0.0
+    depends_on:
+      - eureka-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://modsen_db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - JWT_ACCESS_SECRET=secret
+      - JWT_ACCESS_EXPIRATIONMS=60000
