@@ -19,7 +19,7 @@ public record ProductDTO(
         Integer weight,
 
         @NotNull
-        Integer categoryId,
+        CategoryDTO category,
 
         @NotNull
         @Positive(message = "calories can't be negative")

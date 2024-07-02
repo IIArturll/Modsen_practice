@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Positive;
 public record IngredientModelDTO(
         Integer id,
 
-        @NotNull(message = "ingredientId must not be null")
-        Integer ingredientId,
+        @NotNull(message = "ingredient must not be null")
+        IngredientDTO ingredient,
 
         @Positive(message = "weight can't be negative")
         Integer weight

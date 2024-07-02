@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderRepository extends CrudRepository<OrderEntity, Integer> {
     OrderCustomPage findByCustomerId(int customerId);
-
     OrderCustomPage findByCustomerId(UserEntity user);
+    List<OrderEntity> findByUserId(int customerId);
+    List<OrderEntity> findByUser(UserEntity user);
 }
