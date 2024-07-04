@@ -1,7 +1,4 @@
 databaseChangeLog:
   - include:
       file: db/changelog/changeset/create-product-tables.sql
-  - include:
-      file: db/changelog/changeset/rename-column-categories_id.sql
-  - include:
-      file: db/changelog/changeset/change-product_ingredient_table.sql
+

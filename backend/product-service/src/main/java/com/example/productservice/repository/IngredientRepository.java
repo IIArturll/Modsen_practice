@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface IngredientRepository extends CrudRepository<IngredientEntity, Integer> {
     Optional<IngredientEntity> findByName(String name);
 
-//    List<IngredientEntity> findByProduct(ProductEntity product);
+    List<IngredientEntity> findByProduct(ProductEntity product);
 
-//    List<IngredientEntity> findByProductId(Integer productId);
+    List<IngredientEntity> findByProductId(Integer productId);
 }

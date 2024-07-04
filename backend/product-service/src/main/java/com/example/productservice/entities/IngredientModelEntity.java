@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "ingredient_model", schema = "modsen")
+@Table(schema = "ingredient_model")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

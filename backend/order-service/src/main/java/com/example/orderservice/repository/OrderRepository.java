@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends CrudRepository<OrderEntity, Integer> {
-    List<OrderEntity> findByUserId(int customerId);
+    List<OrderEntity> findByCustomerId(int customerId);
 
-    List<OrderEntity> findByUser(UserEntity user);
+    List<OrderEntity> findByCustomerId(UserEntity user);
 }

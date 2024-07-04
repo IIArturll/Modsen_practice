@@ -1,6 +1,5 @@
 package com.example.userservice.entities;
 
-import com.example.userservice.core.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,21 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class RoleEntity {
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    public RoleEntity(Role role) {
-        this.role = role;
-        this.id = (int) (role.ordinal() + 1);
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-        this.id = (int) (role.ordinal() + 1);
-    }
+    @Column(name = "role", nullable = false, unique = true)
+    private String role;
 }

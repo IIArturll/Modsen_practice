@@ -1,13 +1,10 @@
 package com.example.orderservice.enities;
 
-import com.example.orderservice.core.enums.Sex;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Entity
 @Table(schema = "modsen", name = "user")
@@ -24,17 +21,9 @@ public class UserEntity {
     @Column(unique = true, nullable = false)
     private String email;
     @Column(unique = true, nullable = false)
-    private String login;
-    @Column(nullable = false)
     private String password;
     @ManyToOne
-    @JoinColumn(name = "role_id")
     private RoleEntity role;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
-    private StatusEntity status;
     @Enumerated(EnumType.ORDINAL)
     private Sex sex;
-    @Column(name = "birthday")
-    private Date dateOfBirth;
 }

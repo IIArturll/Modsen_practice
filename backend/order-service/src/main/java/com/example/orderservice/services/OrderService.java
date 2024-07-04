@@ -10,13 +10,9 @@ public interface OrderService {
 
     OrderDTO getById(Integer id);
 
-    List<OrderDTO> getUserOrders();
+    OrderDTO create(OrderDTO orderDTO);
 
-    List<OrderDTO> getAllOrdersByUserId(Integer userId);
-
-    OrderDTO create(List<Integer> productIds);
-
-    OrderDTO update(Integer id, List<Integer> productIds);
+    OrderDTO update(Integer id, OrderDTO newOrderDto);
 
     void delete(Integer id);
 

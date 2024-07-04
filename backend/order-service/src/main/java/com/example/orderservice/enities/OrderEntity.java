@@ -23,10 +23,8 @@ public class OrderEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
     private Double price;
-    @Column(name = "cooking_time")
-    private Integer cookingTime;
-    @Column(name="order_time")
-    private LocalDateTime orderTime;
+    private Integer cooking_time;
+    private LocalDateTime order_time;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "order_product", schema = "modsen",
             joinColumns = @JoinColumn(name = "order_id"),

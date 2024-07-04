@@ -11,9 +11,7 @@ public interface CategoryService {
 
     CategoryDTO create(CategoryDTO categoryDTO);
 
-    CategoryDTO update(CategoryDTO categoryDTO);
+    CategoryDTO update(Integer id, CategoryDTO categoryDTO);
 
     void delete(Integer id);
-
-    CategoryDTO getByName(String categoryName);
 }
