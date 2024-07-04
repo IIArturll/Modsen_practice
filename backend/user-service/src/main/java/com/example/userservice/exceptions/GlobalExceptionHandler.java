@@ -1,4 +1,4 @@
-package com.example.orderservice.core.exceptions;
+package com.example.userservice.core.exceptions;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -36,9 +36,33 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(NotAuthenticatedException.class)
+    @ExceptionHandler(InvalidPasswordException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> handleInvalidPasswordException(InvalidPasswordException ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", new Date());
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("error", "Bad Request");
+        body.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotExistException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleNotExistException(NotExistException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", new Date());
+        body.put("status", HttpStatus.NOT_FOUND.value());
+        body.put("error", "Not Found");
+        body.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ExpiredRefreshTokenException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ResponseEntity<Object> handleNotAuthenticatedException(NotAuthenticatedException ex) {
+    public ResponseEntity<Object> handleExpiredRefreshTokenException(ExpiredRefreshTokenException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", new Date());
         body.put("status", HttpStatus.UNAUTHORIZED.value());
@@ -48,28 +72,29 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(EmptyProductListException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<Object> handleEmptyProductListException(EmptyProductListException ex) {
+    @ExceptionHandler({InvalidRefreshTokenException.class, ExpiredRefreshTokenException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> handleTokenExceptions(RuntimeException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", new Date());
-        body.put("status", HttpStatus.NOT_FOUND.value());
-        body.put("error", "Not Found");
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("error", "Bad Request");
         body.put("message", ex.getMessage());
 
-        @ExceptionHandler(OrderNotFoundException.class)
-        @ResponseStatus(HttpStatus.NOT_FOUND)
-        public ResponseEntity<Object> handleOrderNotFoundException(OrderNotFoundException ex) {
-            Map<String, Object> body = new LinkedHashMap<>();
-            body.put("timestamp", new Date());
-            body.put("status", HttpStatus.NOT_FOUND.value());
-            body.put("error", "Order Not Found");
-            body.put("message", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
 
-            return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Object> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", new Date());
+        body.put("status", HttpStatus.CONFLICT.value());
+        body.put("error", "Conflict");
+        body.put("message", ex.getMessage());
 
-        @ExceptionHandler(MethodArgumentNotValidException.class)
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<MultipleErrorResponse> handleNoValidException(MethodArgumentNotValidException e){
         MultipleErrorResponse errorResponse = new MultipleErrorResponse("Validation error");
         e.getBindingResult()
@@ -83,5 +108,4 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleOtherException(Throwable e){
         return ResponseEntity.status(500).body(e.getMessage());
     }
-
 }
